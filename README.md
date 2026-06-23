@@ -157,9 +157,9 @@ The current receiver routes `SLOAD` to SPI0_SS and uses SPI0 as the SDATAOUT shi
 flowchart TD
     A["Idle: SLOAD high / SPI0_SS inactive"] --> B["SLOAD low / SPI0_SS active"]
     B --> C["First SS active: wait for payload"]
-    C --> D["Restart marker: SLOAD high / SS inactive"]
+    C --> D["Restart marker: SLOAD high / SPI0_SS inactive"]
     D --> E["Next SS active: start SPI0 RX capture"]
-    E --> F["SPI0 captures PA0 SDATAOUT on PA2 SCLK"]
+    E --> F["SPI0 captures SDATAOUT on SPI0_MOSI with SPI0_CLK"]
     F --> G["Store SDATAOUT slot triplets: ACT, LOCATE, FAIL"]
     G --> N{"No SPI0 RX before frame-gap timeout?"}
     N -->|No| F
